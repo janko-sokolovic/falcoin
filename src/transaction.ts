@@ -7,7 +7,7 @@ class Transaction {
   private timestamp: number
   private signature: string | undefined
 
-  constructor(private from: string = null, private to: string, private amount: number) {
+  constructor(private from: string, private to: string, private amount: number) {
     this.timestamp = Date.now()
   }
 
@@ -31,9 +31,7 @@ class Transaction {
   }
 
   signTransaction(signingKey: EC.KeyPair): void {
-    if (signingKey.getPublic('hex') !== this.from) {
-      throw new Error('Cannot sign transactions with other wallets!')
-    }
+    if (signingKey.getPublic('hex') !== this.from) throw new Error('Cannot sign transactions with other wallets!')
 
     const hashTx = this.calculateHash()
     const sig = signingKey.sign(hashTx, 'base64')
@@ -44,9 +42,7 @@ class Transaction {
   isValid(): boolean {
     if (this.from === null) return true
 
-    if (!this.signature || this.signature.length === 0) {
-      throw new Error('Transaction is not signed!')
-    }
+    if (!this.signature || this.signature.length === 0) throw new Error('Transaction is not signed!')
 
     const publicKey = ec.keyFromPublic(this.from, 'hex')
     return publicKey.verify(this.calculateHash(), this.signature)

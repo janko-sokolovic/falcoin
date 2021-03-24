@@ -1,3 +1,7 @@
 /node_modules
 /dist
 /.cache
+/coverage
+main.js
+main.js.map
+index.js.map

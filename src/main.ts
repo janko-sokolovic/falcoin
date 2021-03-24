@@ -34,10 +34,3 @@ falcoin.minePendingTransactions(myWalletAddress)
 
 console.log()
 console.log(`Balance of jaso is ${falcoin.getBalanceOfAddress(myWalletAddress)}`)
-
-// Uncomment this line if you want to test tampering with the chain
-// savjeeCoin.chain[1].transactions[0].amount = 10;
-
-// Check if the chain is valid
-console.log()
-console.log("Blockchain valid?", falcoin.isChainValid() ? "Yes" : "No")

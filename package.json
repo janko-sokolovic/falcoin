@@ -9,6 +9,7 @@
   },
   "scripts": {
     "test": "jest",
+    "coverage": "jest --coverage",
     "dev": "parcel ./src/blockchain.ts",
     "build": "parcel build ./src/blockchain.ts --out-file ./index.js --out-dir .",
     "main": "parcel build ./src/main.ts --out-file ./main.js --out-dir ."
